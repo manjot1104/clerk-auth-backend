@@ -7,13 +7,18 @@ import { requireAuth } from '@clerk/express';
 const app = express();
 
 app.use(cors({
-  origin: "https://clerk-auth-sandy.vercel.app", // your frontend
+  origin: "https://clerk-auth-sandy.vercel.app", 
   credentials: true,
 }));
 app.use(express.json());
 
+//  Test Route
+app.get('/', (req, res) => {
+  res.send('Backend is running!');
+});
+
 //  Protected route
-app.get('/', requireAuth(), (req, res) => {
+app.get('/api/protected', requireAuth(), (req, res) => {
   const { userId } = req.auth;
   res.json({ message: `This is protected data for user ID: ${userId}` });
 });

@@ -12,7 +12,10 @@ app.use(cors({
 }));
 app.use(express.json());
 
-
+//  Test Route
+app.get('/', (req, res) => {
+  res.send('Backend is running!');
+});
 
 //  Protected route
 app.get('/api/protected', requireAuth(), (req, res) => {

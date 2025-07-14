@@ -2,10 +2,14 @@ import express from 'express';
 import mongoose from 'mongoose';
 import 'dotenv/config';
 import cors from 'cors';
-import { requireAuth } from '@clerk/express'; // ✅ correct middleware
+import { requireAuth } from '@clerk/express'; //  correct middleware
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: "https://clerk-auth-sandy.vercel.app", 
+  credentials: true
+}));
+
 app.use(express.json());
 
 //  Root route (for testing)
